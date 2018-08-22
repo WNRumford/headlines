@@ -42,3 +42,5 @@ def get_news(publication='lenta'):
 
 if __name__ == '__main__':
     app.run(host=host, port=port, debug=True)
+
+# 31

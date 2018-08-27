@@ -10,6 +10,14 @@
 <body>
     <div class="w3-container">
         <h1 class="w3-center w3-text-indigo">Главные новости</h1>
+        
+            <form class="w3-container">
+                <p><label class="w3-text-blue"><b>Введите имя новостного ресурса</b></label>
+                <input type="text" class="w3-input w3-border w3-border-blue" name="publication" 
+                    placeholder="search"></p>
+                    <p><input type="submit" class="w3-button w3-blue w3-hover-pale-blue" value="Нажать!"></p>
+            </form>    
+        
         {% for article in articles %}
         <div class="w3-panel w3-light-grey w3-center w3-card">
             <a href="{{article.link}}" class="w3-button" target="_blank">

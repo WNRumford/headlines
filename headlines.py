@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import feedparser
 
 host = os.getenv('IP', '0.0.0.0')
@@ -21,11 +21,21 @@ RSS_FEEDS = {
 
 
 
+# @app.route("/")
+# @app.route("/<publication>")
+# def get_news(publication='lenta'):
+#     feed = feedparser.parse(RSS_FEEDS[publication])
+#     return render_template("index.html", articles=feed['entries'])
+
 @app.route("/")
-@app.route("/<publication>")
-def get_news(publication='lenta'):
+def get_news():
+    query = request.args.get("publication")
+    if not query or query.lower() not in RSS_FEEDS:
+        publication = "lenta"
+    else:
+        publication = query.lower()
     feed = feedparser.parse(RSS_FEEDS[publication])
-    return render_template("index.html", articles=feed['entries'])
+    return render_template("index.html", articles=feed["entries"])
     
 
 if __name__ == '__main__':
